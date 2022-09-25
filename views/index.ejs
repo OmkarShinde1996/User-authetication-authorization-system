@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <title>Home page</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Home Page</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+
+                    <%if(status == 'loggedIn'){%>
+                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <%}else{%>
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                            <%}%>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <%if(status == 'loggedIn'){%>
+                <h5 class="card-title">Welcome to User Authentication and Authorization System <%= user.email%></h5>
+                <%}else{%>
+                    <h5 class="card-title">Welcome to User Authentication and Authorization System</h5>
+                    <%}%>
+                <h6 class="card-subtitle mb-2 text-muted">System Specifications</h6>
+                <p class="card-text">This system uses some of the basic user authentication & authorization guidlines. I have built this system using technologies like Node js, Express js, EJS, bcrypt and MySql.</p>
+                <p class="card-text">Using this system user can register with email id and password.</p>
+                <p class="card-text">This syetem encrypts your password while storing it in DB, hence either hacker or developer himself cannot see your password in database. </p>
+                <p class="card-text">I have made use of JWT to do user authorization and even if someone tries to temper the cookies they will be logged out instantly.</p>
+                    <%if(status == 'loggedIn'){%>
+                    <a href="/profile"><button class="btn btn-primary">Profile</button></a>
+                    <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+                        <%}else{%>
+                    <a href="/login"><button class="btn btn-primary">Login</button></a>
+                    <a href="/register"><button class="btn btn-primary">Register</button></a>
+                    <%}%>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
